@@ -10,4 +10,9 @@ export const contatoValidation = Joi.object({
     favorito: Joi.boolean()
 });
 
-// Adicione a validação via Joi no update de contato;
+// Validação para Usuario;
+export const usuarioValidation = Joi.object({
+    nome: Joi.string().max(150).required(),
+    email: Joi.string().email(),
+    senha: Joi.string().max(200)
+});

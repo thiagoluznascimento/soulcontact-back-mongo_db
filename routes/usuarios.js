@@ -1,11 +1,18 @@
 import { Usuario } from "../models/usuario.js";
 import { Router } from "express";
-// import { contatoValidation } from "../utils/validations";
+import { usuarioValidation } from "../utils/validations.js";
 
 export const usuariosRouter = Router();
 
 usuariosRouter.post("/usuarios", async(req, res)=>{
-    const {nome, email, senha} = req.body;
+    // Validando com o Joi
+    const { error, value } = usuarioValidation.validate(req.body);
+
+    if(error) {
+        res.status(400).json({message: "Dados invalidos", error: error.details});
+    }
+
+    const {nome, email, senha} = value;
     try {
         // tratamento para add novo usuario
         const novoUsuario = new Usuario({nome, email, senha});
