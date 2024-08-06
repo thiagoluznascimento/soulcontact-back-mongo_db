@@ -16,6 +16,9 @@ usuariosRouter.post("/usuarios", async(req, res)=>{
     }
 });
 
-
-
+// Listar usuario [GET]
+usuariosRouter.get("/usuarios", async (rec, res)=>{
+    const lista = await Usuario.find();
+    res.json(lista);
+});
 

@@ -38,7 +38,7 @@ contatosRouter.get("/contatos", async (rec,res) =>{
     // utilizamos o model de contato
     const lista = await Contato.find();
     res.json(lista);
-})
+});
 
 contatosRouter.get("/contatos/:id", async (req, res) => {
     const contato = await Contato.findById(req.params.id).select('-__v'); // .select('__v') remove o campo __v ou qualquer que passar
