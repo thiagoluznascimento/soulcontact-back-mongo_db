@@ -6,7 +6,7 @@ export const usuariosRouter = Router();
 
 usuariosRouter.post("/usuarios", async(req, res)=>{
     // Validando com o Joi
-    const { error, value } = usuarioValidation.validate(req.body);
+    const { error, value } = usuarioValidation.validate(req.body, { abortEarly: false });
 
     if(error) {
         res.status(400).json({message: "Dados invalidos", error: error.details});
